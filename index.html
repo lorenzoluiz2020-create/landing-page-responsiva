@@ -1,0 +1,2186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZYPE</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    :root {
+      --bg-1: #020617;
+      --bg-2: #0f172a;
+      --panel: rgba(15, 23, 42, 0.92);
+      --panel-soft: #0b1220;
+      --line: #1e293b;
+      --text: #ffffff;
+      --muted: #94a3b8;
+      --green: #22c55e;
+      --green-dark: #16a34a;
+      --blue: #1d4ed8;
+      --blue-2: #2563eb;
+      --cyan: #0ea5e9;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --purple: #8b5cf6;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.12), transparent 22%),
+        radial-gradient(circle at top right, rgba(34, 197, 94, 0.08), transparent 25%),
+        linear-gradient(135deg, var(--bg-1), var(--bg-2) 50%, #111827 100%);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 30px 18px 70px;
+    }
+
+    .container {
+      max-width: 1320px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-size: 72px;
+      font-weight: 900;
+      letter-spacing: 8px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .creator {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .headline {
+      max-width: 920px;
+      margin: 0 auto 40px;
+      color: #dbeafe;
+      line-height: 1.8;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .section-box {
+      background: rgba(2, 6, 23, 0.75);
+      border: 1px solid rgba(148, 163, 184, 0.12);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    }
+
+    .login-wrapper {
+      max-width: 450px;
+      margin: 30px auto 0;
+    }
+
+    .login-box {
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.38);
+    }
+
+    .login-box h2 {
+      font-size: 30px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .login-box p {
+      color: var(--muted);
+      line-height: 1.7;
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(34, 197, 94, 0.12);
+      color: #86efac;
+      border: 1px solid rgba(34, 197, 94, 0.25);
+      font-size: 12px;
+      margin-bottom: 14px;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #e2e8f0;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid #334155;
+      background: #020617;
+      color: white;
+      border-radius: 14px;
+      padding: 14px 15px;
+      outline: none;
+      transition: 0.2s;
+      margin-bottom: 14px;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #22c55e;
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.15);
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: none;
+      border-radius: 12px;
+      padding: 13px 18px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.2s ease;
+      font-size: 14px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--green-dark), var(--green));
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(34, 197, 94, 0.22);
+    }
+
+    .btn-blue {
+      background: linear-gradient(135deg, var(--blue), var(--blue-2));
+      color: white;
+    }
+
+    .btn-blue:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(37, 99, 235, 0.25);
+    }
+
+    .btn-purple {
+      background: linear-gradient(135deg, #7c3aed, var(--purple));
+      color: white;
+    }
+
+    .btn-purple:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(139, 92, 246, 0.25);
+    }
+
+    .btn-secondary {
+      background: #1e293b;
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background: #334155;
+    }
+
+    .btn-danger {
+      background: #7f1d1d;
+      color: white;
+    }
+
+    .btn-danger:hover {
+      background: #991b1b;
+    }
+
+    .error-text {
+      color: #fca5a5;
+      margin-top: 10px;
+      font-size: 14px;
+      text-align: center;
+      min-height: 20px;
+    }
+
+    .plans {
+      margin-top: 10px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .plan-card {
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+      transition: 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .plan-card:hover {
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+    }
+
+    .plan-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(255,255,255,0.03), transparent 30%);
+      pointer-events: none;
+    }
+
+    .plan-badge {
+      display: inline-block;
+      font-size: 12px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #cbd5e1;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .plan-card h2 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      font-size: 46px;
+      font-weight: 800;
+      margin: 18px 0 14px;
+      color: var(--green);
+    }
+
+    .plan-card p {
+      color: #cbd5e1;
+      line-height: 1.7;
+      font-size: 15px;
+      min-height: 88px;
+    }
+
+    .plan-list {
+      margin-top: 18px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .plan-list div {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 11px 12px;
+      border-radius: 12px;
+      color: #e2e8f0;
+      font-size: 14px;
+    }
+
+    .plan-actions {
+      margin-top: 22px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .workspace {
+      display: none;
+      margin-top: 40px;
+      background: rgba(2, 6, 23, 0.75);
+      border: 1px solid rgba(148, 163, 184, 0.12);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    }
+
+    .workspace.active {
+      display: block;
+      animation: fadeIn 0.25s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .workspace-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .workspace-title h3 {
+      font-size: 30px;
+      margin-bottom: 6px;
+    }
+
+    .workspace-title p {
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 900px;
+    }
+
+    .workspace-tag {
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+      color: #dbeafe;
+    }
+
+    .module-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .module-tab {
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid #334155;
+      background: #0b1220;
+      color: white;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .module-tab.active {
+      background: rgba(34, 197, 94, 0.14);
+      border-color: rgba(34, 197, 94, 0.45);
+      color: #bbf7d0;
+    }
+
+    .module-section {
+      display: none;
+    }
+
+    .module-section.active {
+      display: block;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .ai-layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 22px;
+      margin-top: 16px;
+    }
+
+    .sidebar,
+    .chat-panel,
+    .trade-side,
+    .trade-main,
+    .memory-card,
+    .automation-card,
+    .report-card,
+    .diesel-card,
+    .email-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+    }
+
+    .sidebar {
+      padding: 18px;
+      height: fit-content;
+    }
+
+    .sidebar h4 {
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+
+    .sidebar p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+
+    .sidebar-card {
+      background: var(--panel-soft);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+
+    .sidebar-card strong {
+      display: block;
+      margin-bottom: 8px;
+      color: #86efac;
+      font-size: 14px;
+    }
+
+    .sidebar-card span {
+      color: #cbd5e1;
+      font-size: 13px;
+      line-height: 1.6;
+      display: block;
+    }
+
+    .chat-panel {
+      min-height: 650px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .chat-topbar {
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .chat-topbar h4 {
+      font-size: 20px;
+    }
+
+    .chat-topbar p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .status {
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      border: 1px solid rgba(34,197,94,0.22);
+      color: #86efac;
+      background: rgba(34,197,94,0.08);
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      background:
+        radial-gradient(circle at top right, rgba(14,165,233,0.05), transparent 18%),
+        transparent;
+    }
+
+    .msg {
+      max-width: 85%;
+      padding: 14px 16px;
+      border-radius: 16px;
+      line-height: 1.7;
+      white-space: pre-wrap;
+      font-size: 14px;
+    }
+
+    .msg.user {
+      align-self: flex-end;
+      background: linear-gradient(135deg, var(--blue), var(--blue-2));
+      color: white;
+      border-bottom-right-radius: 5px;
+    }
+
+    .msg.bot {
+      align-self: flex-start;
+      background: #0b1220;
+      border: 1px solid var(--line);
+      color: #e2e8f0;
+      border-bottom-left-radius: 5px;
+    }
+
+    .typing {
+      opacity: 0.8;
+      font-style: italic;
+    }
+
+    .chat-input-area {
+      padding: 18px;
+      border-top: 1px solid var(--line);
+      background: rgba(2, 6, 23, 0.65);
+    }
+
+    .chat-form {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+    }
+
+    .chat-input {
+      width: 100%;
+      background: #020617;
+      color: white;
+      border: 1px solid #334155;
+      border-radius: 14px;
+      padding: 14px 15px;
+      outline: none;
+    }
+
+    .chat-input:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.12);
+    }
+
+    .helper-actions {
+      margin-top: 12px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .sds-box,
+    .diesel-box,
+    .email-box,
+    .memory-box,
+    .automation-box,
+    .reports-box {
+      margin-top: 20px;
+      background: rgba(15, 23, 42, 0.92);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 20px;
+    }
+
+    .sds-grid,
+    .email-grid,
+    .reports-grid,
+    .memory-grid,
+    .automation-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .diesel-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+      margin-bottom: 18px;
+    }
+
+    .diesel-card,
+    .memory-card,
+    .automation-card,
+    .report-card,
+    .email-card {
+      padding: 18px;
+    }
+
+    .diesel-card h4,
+    .memory-card h4,
+    .automation-card h4,
+    .report-card h4,
+    .email-card h4 {
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .diesel-card p,
+    .memory-card p,
+    .automation-card p,
+    .report-card p,
+    .email-card p {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .diesel-value {
+      font-size: 30px;
+      font-weight: 900;
+      margin-top: 12px;
+      color: #86efac;
+    }
+
+    textarea {
+      min-height: 220px;
+      resize: vertical;
+      line-height: 1.5;
+    }
+
+    .result-box {
+      background: #020617;
+      border: 1px solid #1e293b;
+      border-radius: 16px;
+      padding: 18px;
+      min-height: 140px;
+      line-height: 1.7;
+      color: #dbeafe;
+      white-space: pre-wrap;
+    }
+
+    .memory-list,
+    .automation-list,
+    .report-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .memory-item,
+    .automation-item,
+    .report-item {
+      background: #0b1220;
+      border: 1px solid #1e293b;
+      border-radius: 14px;
+      padding: 14px;
+    }
+
+    .memory-item strong,
+    .automation-item strong,
+    .report-item strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .memory-item span,
+    .automation-item span,
+    .report-item span {
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 13px;
+    }
+
+    .trade-layout {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: 290px 1fr;
+      gap: 20px;
+    }
+
+    .trade-side {
+      padding: 16px;
+      height: fit-content;
+    }
+
+    .trade-side h4 {
+      font-size: 19px;
+      margin-bottom: 14px;
+    }
+
+    .menu-box {
+      display: grid;
+      gap: 10px;
+    }
+
+    .menu-item {
+      background: var(--panel-soft);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      transition: 0.2s;
+    }
+
+    .menu-item.active {
+      border-color: rgba(37, 99, 235, 0.45);
+      background: rgba(37, 99, 235, 0.14);
+    }
+
+    .menu-item strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+
+    .menu-item span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .trade-main {
+      overflow: hidden;
+    }
+
+    .trade-topbar {
+      background: linear-gradient(135deg, #1d4ed8, #2563eb);
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .trade-topbar h4 {
+      font-size: 28px;
+      color: white;
+    }
+
+    .trade-topbar small {
+      color: rgba(255,255,255,0.86);
+      font-size: 13px;
+    }
+
+    .continents {
+      display: flex;
+      gap: 10px;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--line);
+      flex-wrap: wrap;
+      background: rgba(255,255,255,0.01);
+    }
+
+    .continent-btn {
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid #334155;
+      background: #0b1220;
+      color: white;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .continent-btn.active {
+      background: rgba(37,99,235,0.18);
+      border-color: rgba(37,99,235,0.5);
+      color: #bfdbfe;
+    }
+
+    .trade-content {
+      padding: 20px;
+    }
+
+    .filters {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .filter-group label {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 7px;
+      color: #dbeafe;
+      font-weight: 700;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .card {
+      background: #0b1220;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px;
+    }
+
+    .card .label {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    .card .value {
+      font-size: 26px;
+      font-weight: 800;
+    }
+
+    .value.green { color: #86efac; }
+    .value.blue { color: #93c5fd; }
+    .value.orange { color: #fdba74; }
+    .value.red { color: #fca5a5; }
+
+    .table-wrap {
+      background: #0b1220;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 850px;
+    }
+
+    thead {
+      background: rgba(37,99,235,0.14);
+    }
+
+    th, td {
+      text-align: left;
+      padding: 14px 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      font-size: 14px;
+    }
+
+    th {
+      color: #dbeafe;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    td {
+      color: #e2e8f0;
+    }
+
+    .note {
+      margin-top: 16px;
+      padding: 14px 15px;
+      border-radius: 14px;
+      background: rgba(245, 158, 11, 0.10);
+      border: 1px solid rgba(245, 158, 11, 0.20);
+      color: #fde68a;
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .top-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 18px;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .footer-note {
+      margin-top: 24px;
+      text-align: center;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 13px;
+    }
+
+    @media (max-width: 1100px) {
+      .plans,
+      .filters,
+      .cards,
+      .sds-grid,
+      .email-grid,
+      .reports-grid,
+      .memory-grid,
+      .automation-grid,
+      .diesel-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .ai-layout,
+      .trade-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .logo {
+        font-size: 48px;
+        letter-spacing: 4px;
+      }
+
+      .chat-form {
+        grid-template-columns: 1fr;
+      }
+
+      .msg {
+        max-width: 100%;
+      }
+
+      .workspace-title h3 {
+        font-size: 24px;
+      }
+
+      .trade-topbar h4 {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">ZYPE</div>
+    <div class="creator">created by lorenzo</div>
+
+    <p class="headline">
+      A plataforma ZYPE combina inteligência artificial, leitura de fichas técnicas,
+      análise do mercado de diesel, automação e relatórios em uma única interface profissional.
+    </p>
+
+    <div id="loginSection" class="login-wrapper">
+      <div class="login-box">
+        <div class="center">
+          <div class="badge">Acesso restrito</div>
+        </div>
+        <h2>Entrar no Zype</h2>
+        <p>
+          Faça login para acessar os planos da plataforma.
+        </p>
+
+        <label for="user">Usuário</label>
+        <input id="user" type="text" placeholder="Digite seu usuário" />
+
+        <label for="pass">Senha</label>
+        <input id="pass" type="password" placeholder="Digite sua senha" onkeydown="if(event.key==='Enter'){ login(); }" />
+
+        <div class="btn-row">
+          <button class="btn-primary" style="width:100%;" onclick="login()">Entrar</button>
+        </div>
+
+        <div id="erro" class="error-text"></div>
+      </div>
+    </div>
+
+    <div id="appSection" class="hidden">
+      <div class="section-box">
+        <div class="top-actions">
+          <button class="btn-secondary" onclick="mostrarPlanos()">Planos</button>
+          <button class="btn-danger" onclick="logout()">Sair</button>
+        </div>
+
+        <p class="headline" style="margin-bottom:20px;">
+          Escolha o plano e abra o conteúdo somente depois da seleção.
+          O plano básico traz IA, SDS, diesel e e-mail. O plano Plus traz memória da IA,
+          automação, relatórios e recursos mais avançados.
+        </p>
+
+        <section class="plans" id="plansArea">
+          <div class="plan-card">
+            <div class="plan-badge">Plano inicial</div>
+            <h2>Plano Básico</h2>
+            <div class="price">R$10</div>
+            <p>
+              IA estilo chat com visual profissional, leitor de SDS, painel do mercado de diesel 2022–2025 e gerador de e-mail.
+            </p>
+            <div class="plan-list">
+              <div>Chat geral estilo GPT</div>
+              <div>Leitor de SDS / ficha técnica</div>
+              <div>Dados de diesel 2022–2025</div>
+              <div>Gerador de e-mail</div>
+            </div>
+            <div class="plan-actions">
+              <button class="btn-primary" onclick="abrirPlano('plano10')">Escolher plano</button>
+            </div>
+          </div>
+
+          <div class="plan-card">
+            <div class="plan-badge">Plano intermediário</div>
+            <h2>Plano Plus</h2>
+            <div class="price">R$20</div>
+            <p>
+              IA com memória, automação, relatórios, dashboard global e gerador de e-mail com estrutura premium.
+            </p>
+            <div class="plan-list">
+              <div>Memória de conversa</div>
+              <div>Automação</div>
+              <div>Relatórios</div>
+              <div>Gerador de e-mail premium</div>
+            </div>
+            <div class="plan-actions">
+              <button class="btn-blue" onclick="abrirPlano('plano20')">Escolher plano</button>
+            </div>
+          </div>
+
+          <div class="plan-card">
+            <div class="plan-badge">Mais completo</div>
+            <h2>Plano PRO</h2>
+            <div class="price">R$30</div>
+            <p>
+              Área reservada para próximos recursos: automações avançadas, administração, exportações, clientes e IA expandida.
+            </p>
+            <div class="plan-list">
+              <div>Em breve</div>
+              <div>Automação e relatórios</div>
+              <div>Painel administrativo</div>
+              <div>Mais inteligência comercial</div>
+            </div>
+            <div class="plan-actions">
+              <button class="btn-purple" onclick="abrirPlano('plano30')">Escolher plano</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="workspace" id="plano10">
+          <div class="workspace-header">
+            <div class="workspace-title">
+              <h3>Plano Básico • IA Zype</h3>
+              <p>
+                Área organizada por módulos: Chat, SDS, Mercado do Diesel e Gerador de E-mail.
+              </p>
+            </div>
+            <div class="workspace-tag">R$10 • Basic Intelligence</div>
+          </div>
+
+          <div class="module-tabs">
+            <button class="module-tab active" onclick="abrirModulo('basic', 'basic-chat', this)">Chat</button>
+            <button class="module-tab" onclick="abrirModulo('basic', 'basic-sds', this)">SDS</button>
+            <button class="module-tab" onclick="abrirModulo('basic', 'basic-diesel', this)">Diesel 2022–2025</button>
+            <button class="module-tab" onclick="abrirModulo('basic', 'basic-email', this)">Gerador de E-mail</button>
+          </div>
+
+          <div id="basic-chat" class="module-section active">
+            <div class="ai-layout">
+              <aside class="sidebar">
+                <h4>Ferramentas do plano</h4>
+                <p>
+                  Área lateral para navegação e resumo das funções do plano.
+                </p>
+
+                <div class="sidebar-card">
+                  <strong>Chat Geral</strong>
+                  <span>Faça perguntas comuns, ideias, estudos, textos, explicações e ajuda geral.</span>
+                </div>
+
+                <div class="sidebar-card">
+                  <strong>SDS Reader</strong>
+                  <span>Analise o texto de fichas técnicas e extraia informações principais.</span>
+                </div>
+
+                <div class="sidebar-card">
+                  <strong>Mercado do Diesel</strong>
+                  <span>Veja dados simulados de 2022 a 2025 com visão rápida.</span>
+                </div>
+
+                <div class="sidebar-card">
+                  <strong>E-mail</strong>
+                  <span>Gere e-mails profissionais direto pela interface.</span>
+                </div>
+
+                <button class="btn-secondary" style="width:100%; margin-top:8px;" onclick="limparChat()">Limpar conversa</button>
+              </aside>
+
+              <div class="chat-panel">
+                <div class="chat-topbar">
+                  <div>
+                    <h4>IA Completa do Zype</h4>
+                    <p>Chat conectado ao backend do projeto</p>
+                  </div>
+                  <div class="status">Online</div>
+                </div>
+
+                <div class="chat-messages" id="chatMessages">
+                  <div class="msg bot">Olá! Eu sou a IA do Zype.
+
+Posso ajudar com:
+• perguntas gerais
+• estudo
+• ideias de negócio
+• programação
+• análise de SDS
+• temas ligados ao diesel e mercado
+
+Digite sua pergunta abaixo.</div>
+                </div>
+
+                <div class="chat-input-area">
+                  <div class="chat-form">
+                    <input
+                      id="chatInput"
+                      class="chat-input"
+                      type="text"
+                      placeholder="Digite qualquer pergunta..."
+                      onkeydown="if(event.key==='Enter'){ enviarMensagem(); }"
+                    />
+                    <button class="btn-primary" onclick="enviarMensagem()">Enviar</button>
+                  </div>
+
+                  <div class="helper-actions">
+                    <button class="btn-secondary" onclick="perguntaRapida('me explique o que é inteligência artificial')">IA</button>
+                    <button class="btn-secondary" onclick="perguntaRapida('me dê uma ideia de negócio online')">Negócio</button>
+                    <button class="btn-secondary" onclick="perguntaRapida('me ajude a estudar programação')">Programação</button>
+                    <button class="btn-secondary" onclick="perguntaRapida('analise esta ficha SDS')">SDS</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="basic-sds" class="module-section">
+            <div class="sds-box">
+              <div class="workspace-header" style="margin-bottom:12px;">
+                <div class="workspace-title">
+                  <h3 style="font-size:22px;">Leitor de SDS / Ficha Técnica</h3>
+                  <p>Cole o texto da ficha abaixo e o sistema tenta interpretar nome, CAS, composição, categoria e finalidade.</p>
+                </div>
+              </div>
+
+              <div class="sds-grid">
+                <div>
+                  <label for="textoSDS">Texto da ficha</label>
+                  <textarea
+                    id="textoSDS"
+                    placeholder="Exemplo:
+Nome do Produto: Isopropyl Alcohol
+CAS: 67-63-0
+Composição: Isopropanol 99,8%
+Descrição: Líquido incolor, inflamável.
+Aplicação: limpeza técnica, solvente industrial, remoção de resíduos e desengraxe de superfícies."
+                  ></textarea>
+
+                  <div class="btn-row">
+                    <button class="btn-primary" onclick="analisarSDS()">Analisar SDS</button>
+                    <button class="btn-secondary" onclick="exemploSDS()">Inserir exemplo</button>
+                    <button class="btn-secondary" onclick="limparSDS()">Limpar</button>
+                  </div>
+                </div>
+
+                <div>
+                  <label>Resultado</label>
+                  <div class="result-box" id="resultadoSDS">A análise do SDS vai aparecer aqui.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="basic-diesel" class="module-section">
+            <div class="diesel-box">
+              <div class="workspace-header">
+                <div class="workspace-title">
+                  <h3 style="font-size:22px;">Mercado do Diesel • 2022 até 2025</h3>
+                  <p>Painel visual com dados simulados para protótipo. Depois você pode trocar por base real.</p>
+                </div>
+              </div>
+
+              <div class="diesel-grid">
+                <div class="diesel-card">
+                  <h4>Preço médio 2022</h4>
+                  <p>Período de forte pressão internacional e oscilação.</p>
+                  <div class="diesel-value">R$ 6,89</div>
+                </div>
+                <div class="diesel-card">
+                  <h4>Preço médio 2023</h4>
+                  <p>Mercado mais ajustado após o pico do ano anterior.</p>
+                  <div class="diesel-value">R$ 5,94</div>
+                </div>
+                <div class="diesel-card">
+                  <h4>Preço médio 2024</h4>
+                  <p>Estabilização parcial com novas referências de custo.</p>
+                  <div class="diesel-value">R$ 5,76</div>
+                </div>
+                <div class="diesel-card">
+                  <h4>Preço médio 2025</h4>
+                  <p>Mercado ainda sensível a logística, petróleo e câmbio.</p>
+                  <div class="diesel-value">R$ 5,98</div>
+                </div>
+              </div>
+
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Ano</th>
+                      <th>Preço Médio</th>
+                      <th>Variação</th>
+                      <th>Contexto</th>
+                      <th>Impacto</th>
+                    </tr>
+                  </thead>
+                  <tbody id="dieselTableBody"></tbody>
+                </table>
+              </div>
+
+              <div class="note">
+                Esse módulo foi estruturado para o Plano Básico como uma área temática específica do mercado de diesel. Depois dá para ligar filtros, gráficos e IA especializada.
+              </div>
+            </div>
+          </div>
+
+          <div id="basic-email" class="module-section">
+            <div class="email-box">
+              <div class="workspace-header">
+                <div class="workspace-title">
+                  <h3 style="font-size:22px;">Gerador de E-mail</h3>
+                  <p>Crie e-mails profissionais com base no objetivo, tom e assunto.</p>
+                </div>
+              </div>
+
+              <div class="email-grid">
+                <div class="email-card">
+                  <label for="emailObjetivoBasic">Objetivo do e-mail</label>
+                  <input id="emailObjetivoBasic" type="text" placeholder="Ex: cobrar retorno de proposta comercial" />
+
+                  <label for="emailTomBasic">Tom</label>
+                  <select id="emailTomBasic">
+                    <option value="profissional">Profissional</option>
+                    <option value="formal">Formal</option>
+                    <option value="amigavel">Amigável</option>
+                    <option value="direto">Direto</option>
+                  </select>
+
+                  <label for="emailInfoBasic">Informações principais</label>
+                  <textarea id="emailInfoBasic" placeholder="Ex: cliente recebeu a proposta na semana passada e ainda não respondeu. Quero cobrar educadamente."></textarea>
+
+                  <div class="btn-row">
+                    <button class="btn-primary" onclick="gerarEmail('basic')">Gerar e-mail</button>
+                    <button class="btn-secondary" onclick="limparEmail('basic')">Limpar</button>
+                  </div>
+                </div>
+
+                <div>
+                  <label>Resultado</label>
+                  <div class="result-box" id="resultadoEmailBasic">O e-mail gerado vai aparecer aqui.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="workspace" id="plano20">
+          <div class="workspace-header">
+            <div class="workspace-title">
+              <h3>Plano Plus • Memória, Automação e Relatórios</h3>
+              <p>
+                Interface premium organizada por módulos: memória da IA, automação, relatórios, e-mail e dashboard global.
+              </p>
+            </div>
+            <div class="workspace-tag">R$20 • Plus Intelligence</div>
+          </div>
+
+          <div class="module-tabs">
+            <button class="module-tab active" onclick="abrirModulo('plus', 'plus-memory', this)">Memória da IA</button>
+            <button class="module-tab" onclick="abrirModulo('plus', 'plus-automation', this)">Automação</button>
+            <button class="module-tab" onclick="abrirModulo('plus', 'plus-reports', this)">Relatórios</button>
+            <button class="module-tab" onclick="abrirModulo('plus', 'plus-email', this)">Gerador de E-mail</button>
+            <button class="module-tab" onclick="abrirModulo('plus', 'plus-trade', this)">Trade Dashboard</button>
+          </div>
+
+          <div id="plus-memory" class="module-section active">
+            <div class="memory-box">
+              <div class="workspace-header">
+                <div class="workspace-title">
+                  <h3 style="font-size:22px;">Memória de Conversa da IA</h3>
+                  <p>Estrutura visual para armazenar conversas, continuar contexto e organizar histórico.</p>
+                </div>
+              </div>
+
+              <div class="memory-grid">
+                <div class="memory-card">
+                  <h4>Resumo da memória</h4>
+                  <p>
+                    No Plano Plus, a IA pode manter o contexto das conversas e registrar tópicos importantes para continuar depois.
+                  </p>
+                  <div class="memory-list">
+                    <div class="memory-item">
+                      <strong>Última conversa</strong>
+                      <span>Planejamento do Zype, módulos dos planos e estrutura do painel.</span>
+                    </div>
+                    <div class="memory-item">
+                      <strong>Tema salvo</strong>
+                      <span>Mercado de diesel, automação, relatórios e gerador de e-mail.</span>
+                    </div>
+                    <div class="memory-item">
+                      <strong>Status</strong>
+                      <span>Pronto para backend com armazenamento futuro.</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <label for="memoriaInput">Nova anotação de memória</label>
+                  <textarea id="memoriaInput" placeholder="Ex: usuário quer focar no mercado de diesel e automação comercial."></textarea>
+                  <div class="btn-row">
+                    <button class="btn-blue" onclick="salvarMemoria()">Salvar na memória visual</button>
+                    <button class="btn-secondary" onclick="limparMemoria()">Limpar</button>
+                  </div>
+                  <label style="margin-top:12px;">Memórias salvas</label>
+                  <div class="result-box" id="resultadoMemoria">Nenhuma memória adicional salva ainda.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="plus-automation" class="module-section">
+            <div class="automation-box">
+              <div class="workspace-header">
+                <div class="workspace-title">
+                  <h3 style="font-size:22px;">Automação</h3>
+                  <p>Módulo visual para mapear tarefas repetitivas e criar fluxos futuros.</p>
+                </div>
+              </div>
+
+              <div class="automation-grid">
+                <div class="automation-card">
+                  <h4>Fluxos sugeridos</h4>
+                  <div class="automation-list">
+                    <div class="automation-item">
+                      <strong>Leitura de SDS</strong>
+                      <span>Extrair nome, CAS, composição e aplicação automaticamente.</span>
+                    </div>
+                    <div class="automation-item">
+                      <strong>Relatório de mercado</strong>
+                      <span>Montar resumo diário ou semanal com base em dados importados.</span>
+                    </div>
+                    <div class="automation-item">
+                      <strong>E-mail automático</strong>
+                      <span>Gerar mensagens prontas com base em objetivo e tom.</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <label for="automacaoInput">Descreva a automação desejada</label>
+                  <textarea id="automacaoInput" placeholder="Ex: quero automatizar a leitura de ficha técnica e gerar uma tabela com CAS, composição e categoria."></textarea>
+                  <div class="btn-row">
+                    <button class="btn-blue" onclick="gerarAutomacao()">Gerar estrutura</button>
+                    <button class="btn-secondary" onclick="limparAutomacao()">Limpar</button>
+                  </div>
+                  <label style="margin-top:12px;">Resultado</label>
+                  <div class="result-box" id="resultadoAutomacao">A estrutura da automação vai aparecer aqui.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="plus-reports" class="module-section">
+            <div class="reports-box">
+              <div class="workspace-header">
+                <div class="workspace-title">
+                  <h3 style="font-size:22px;">Relatórios</h3>
+                  <p>Geração de relatórios rápidos, executivos ou operacionais.</p>
+                </div>
+              </div>
+
+              <div class="reports-grid">
+                <div class="report-card">
+                  <h4>Modelos disponíveis</h4>
+                  <div class="report-list">
+                    <div class="report-item">
+                      <strong>Resumo executivo</strong>
+                      <span>Texto curto para diretoria, com visão rápida e objetiva.</span>
+                    </div>
+                    <div class="report-item">
+                      <strong>Relatório operacional</strong>
+                      <span>Mais detalhes sobre processos, números e observações.</span>
+                    </div>
+                    <div class="report-item">
+                      <strong>Relatório comercial</strong>
+                      <span>Foco em oportunidades, contatos, clientes e mercado.</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <label for="relatorioTema">Tema do relatório</label>
+                  <input id="relatorioTema" type="text" placeholder="Ex: mercado do diesel em 2025" />
+
+                  <label for="relatorioTipo">Tipo</label>
+                  <select id="relatorioTipo">
+                    <option value="executivo">Executivo</option>
+                    <option value="operacional">Operacional</option>
+                    <option value="comercial">Comercial</option>
+                  </select>
+
+                  <label for="relatorioInfo">Informações principais</label>
+                  <textarea id="relatorioInfo" placeholder="Ex: focar em preço médio, tendência, impacto logístico e visão para fornecedores."></textarea>
+
+                  <div class="btn-row">
+                    <button class="btn-blue" onclick="gerarRelatorio()">Gerar relatório</button>
+                    <button class="btn-secondary" onclick="limparRelatorio()">Limpar</button>
+                  </div>
+
+                  <label style="margin-top:12px;">Resultado</label>
+                  <div class="result-box" id="resultadoRelatorio">O relatório gerado vai aparecer aqui.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="plus-email" class="module-section">
+            <div class="email-box">
+              <div class="workspace-header">
+                <div class="workspace-title">
+                  <h3 style="font-size:22px;">Gerador de E-mail Premium</h3>
+                  <p>Versão do plano Plus com tom, objetivo e estrutura mais detalhada.</p>
+                </div>
+              </div>
+
+              <div class="email-grid">
+                <div class="email-card">
+                  <label for="emailObjetivoPlus">Objetivo do e-mail</label>
+                  <input id="emailObjetivoPlus" type="text" placeholder="Ex: agendar reunião comercial para apresentar proposta" />
+
+                  <label for="emailTomPlus">Tom</label>
+                  <select id="emailTomPlus">
+                    <option value="profissional">Profissional</option>
+                    <option value="formal">Formal</option>
+                    <option value="amigavel">Amigável</option>
+                    <option value="direto">Direto</option>
+                  </select>
+
+                  <label for="emailInfoPlus">Informações principais</label>
+                  <textarea id="emailInfoPlus" placeholder="Ex: cliente demonstrou interesse, quero propor reunião de 30 minutos na próxima semana."></textarea>
+
+                  <div class="btn-row">
+                    <button class="btn-blue" onclick="gerarEmail('plus')">Gerar e-mail</button>
+                    <button class="btn-secondary" onclick="limparEmail('plus')">Limpar</button>
+                  </div>
+                </div>
+
+                <div>
+                  <label>Resultado</label>
+                  <div class="result-box" id="resultadoEmailPlus">O e-mail premium vai aparecer aqui.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="plus-trade" class="module-section">
+            <div class="trade-layout">
+              <aside class="trade-side">
+                <h4>Consulta Global</h4>
+
+                <div class="menu-box">
+                  <div class="menu-item active">
+                    <strong>Parâmetros</strong>
+                    <span>Escolha continente, país, operação, período e descrição.</span>
+                  </div>
+                  <div class="menu-item">
+                    <strong>Acumulados</strong>
+                    <span>Visão de totais por período, região e produto.</span>
+                  </div>
+                  <div class="menu-item">
+                    <strong>Empresas</strong>
+                    <span>Futuro módulo para importadores, exportadores e fornecedores.</span>
+                  </div>
+                </div>
+              </aside>
+
+              <div class="trade-main">
+                <div class="trade-topbar">
+                  <div>
+                    <h4 id="tradeTitle">Global Trade Dashboard</h4>
+                    <small id="tradeSubtitle">Visão internacional demo</small>
+                  </div>
+                  <button class="btn-secondary" onclick="carregarDados()">Atualizar</button>
+                </div>
+
+                <div class="continents">
+                  <button class="continent-btn active" onclick="selecionarContinente('Global', this)">Global</button>
+                  <button class="continent-btn" onclick="selecionarContinente('América do Norte', this)">América do Norte</button>
+                  <button class="continent-btn" onclick="selecionarContinente('América do Sul', this)">América do Sul</button>
+                  <button class="continent-btn" onclick="selecionarContinente('Europa', this)">Europa</button>
+                  <button class="continent-btn" onclick="selecionarContinente('Ásia', this)">Ásia</button>
+                  <button class="continent-btn" onclick="selecionarContinente('África', this)">África</button>
+                  <button class="continent-btn" onclick="selecionarContinente('Oceania', this)">Oceania</button>
+                </div>
+
+                <div class="trade-content">
+                  <div class="filters">
+                    <div class="filter-group">
+                      <label>Operação</label>
+                      <select id="filtroOperacao" onchange="carregarDados()">
+                        <option value="Todos">Todos</option>
+                        <option value="Importação">Importação</option>
+                        <option value="Exportação">Exportação</option>
+                      </select>
+                    </div>
+
+                    <div class="filter-group">
+                      <label>País</label>
+                      <select id="filtroPais" onchange="carregarDados()">
+                        <option value="Todos">Todos</option>
+                      </select>
+                    </div>
+
+                    <div class="filter-group">
+                      <label>Período</label>
+                      <select id="filtroPeriodo" onchange="carregarDados()">
+                        <option value="2026">2026</option>
+                        <option value="2025">2025</option>
+                        <option value="2024">2024</option>
+                      </select>
+                    </div>
+
+                    <div class="filter-group">
+                      <label>Descrição / Produto</label>
+                      <input id="filtroBusca" type="text" placeholder="Ex: polímero, álcool, resina..." oninput="carregarDados()" />
+                    </div>
+                  </div>
+
+                  <div class="cards">
+                    <div class="card">
+                      <div class="label">Registros encontrados</div>
+                      <div class="value blue" id="cardRegistros">0</div>
+                    </div>
+                    <div class="card">
+                      <div class="label">Valor total (US$)</div>
+                      <div class="value green" id="cardValor">0</div>
+                    </div>
+                    <div class="card">
+                      <div class="label">Volume total (kg)</div>
+                      <div class="value orange" id="cardPeso">0</div>
+                    </div>
+                    <div class="card">
+                      <div class="label">Países visíveis</div>
+                      <div class="value red" id="cardPaises">0</div>
+                    </div>
+                  </div>
+
+                  <div class="table-wrap">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Continente</th>
+                          <th>País</th>
+                          <th>Operação</th>
+                          <th>Produto</th>
+                          <th>Empresa</th>
+                          <th>US$</th>
+                          <th>Kg</th>
+                          <th>Período</th>
+                        </tr>
+                      </thead>
+                      <tbody id="tradeTableBody"></tbody>
+                    </table>
+                  </div>
+
+                  <div class="note">
+                    Este painel está em modo demonstração com dados locais de exemplo. Depois você pode trocar por API ou banco real.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="workspace" id="plano30">
+          <div class="workspace-header">
+            <div class="workspace-title">
+              <h3>Plano PRO</h3>
+              <p>
+                Área reservada para futuras automações, relatórios, exportações, administração, pagamentos e recursos avançados.
+              </p>
+            </div>
+            <div class="workspace-tag">R$30 • Em construção</div>
+          </div>
+
+          <div class="note">
+            Aqui depois podemos colocar login seguro, clientes, relatórios Excel, leitura de PDF, painel admin, integrações e IA avançada.
+          </div>
+        </section>
+      </div>
+
+      <p class="footer-note">
+        Zype AI Platform • protótipo visual local em HTML, CSS e JavaScript. O chat depende do backend na rota /chat.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    /* LOGIN */
+    function login() {
+      const user = document.getElementById("user").value.trim();
+      const pass = document.getElementById("pass").value.trim();
+      const erro = document.getElementById("erro");
+
+      if (user === "energy" && pass === "energy123") {
+        document.getElementById("loginSection").classList.add("hidden");
+        document.getElementById("appSection").classList.remove("hidden");
+        erro.innerText = "";
+      } else {
+        erro.innerText = "Login incorreto. Use energy / energy123";
+      }
+    }
+
+    function logout() {
+      document.getElementById("loginSection").classList.remove("hidden");
+      document.getElementById("appSection").classList.add("hidden");
+      document.getElementById("user").value = "";
+      document.getElementById("pass").value = "";
+      document.getElementById("erro").innerText = "";
+      mostrarPlanos();
+    }
+
+    function mostrarPlanos() {
+      document.querySelectorAll(".workspace").forEach((item) => item.classList.remove("active"));
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    /* PLANOS */
+    let continenteAtual = "Global";
+
+    function abrirPlano(id) {
+      document.querySelectorAll(".workspace").forEach((item) => item.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+
+      if (id === "plano20") {
+        preencherPaises();
+        carregarDados();
+      }
+
+      window.scrollTo({
+        top: document.getElementById(id).offsetTop - 20,
+        behavior: "smooth"
+      });
+    }
+
+    /* MÓDULOS */
+    function abrirModulo(tipo, id, botao) {
+      const mapa = {
+        basic: {
+          tabs: document.querySelectorAll("#plano10 .module-tab"),
+          sections: document.querySelectorAll("#plano10 .module-section")
+        },
+        plus: {
+          tabs: document.querySelectorAll("#plano20 .module-tab"),
+          sections: document.querySelectorAll("#plano20 .module-section")
+        }
+      };
+
+      mapa[tipo].tabs.forEach(btn => btn.classList.remove("active"));
+      mapa[tipo].sections.forEach(section => section.classList.remove("active"));
+
+      botao.classList.add("active");
+      document.getElementById(id).classList.add("active");
+    }
+
+    /* CHAT */
+    const chatMessages = document.getElementById("chatMessages");
+
+    function adicionarMensagem(texto, tipo) {
+      const div = document.createElement("div");
+      div.className = `msg ${tipo}`;
+      div.innerText = texto;
+      chatMessages.appendChild(div);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function perguntaRapida(texto) {
+      document.getElementById("chatInput").value = texto;
+      enviarMensagem();
+    }
+
+    function limparChat() {
+      chatMessages.innerHTML = `
+        <div class="msg bot">Olá! Eu sou a IA do Zype.
+
+Posso ajudar com:
+• perguntas gerais
+• estudo
+• ideias de negócio
+• programação
+• análise de SDS
+• temas ligados ao diesel e mercado
+
+Digite sua pergunta abaixo.</div>
+      `;
+    }
+
+    async function enviarMensagem() {
+      const input = document.getElementById("chatInput");
+      const texto = input.value.trim();
+
+      if (!texto) return;
+
+      adicionarMensagem(texto, "user");
+      input.value = "";
+
+      const typing = document.createElement("div");
+      typing.className = "msg bot typing";
+      typing.innerText = "IA está pensando...";
+      chatMessages.appendChild(typing);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      try {
+        const resposta = await fetch("/chat", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            message: texto
+          })
+        });
+
+        const data = await resposta.json();
+        typing.remove();
+        adicionarMensagem(data.reply || "Sem resposta no momento.", "bot");
+      } catch (error) {
+        typing.innerText = "Erro ao conectar com a IA.";
+        console.error(error);
+      }
+    }
+
+    /* SDS READER */
+    function exemploSDS() {
+      document.getElementById("textoSDS").value =
+`Nome do Produto: Isopropyl Alcohol
+CAS: 67-63-0
+Composição: Isopropanol 99,8%
+Descrição: Líquido incolor, inflamável.
+Aplicação: limpeza técnica, solvente industrial, remoção de resíduos e desengraxe de superfícies.
+Manuseio: manter longe de fontes de ignição.`;
+    }
+
+    function limparSDS() {
+      document.getElementById("textoSDS").value = "";
+      document.getElementById("resultadoSDS").innerText = "A análise do SDS vai aparecer aqui.";
+    }
+
+    function extrairCampo(texto, regexList) {
+      for (let regex of regexList) {
+        const match = texto.match(regex);
+        if (match && match[1]) {
+          return match[1].trim();
+        }
+      }
+      return "Não identificado";
+    }
+
+    function detectarFinalidade(texto) {
+      const t = texto.toLowerCase();
+
+      if (t.includes("solvente") || t.includes("diluent") || t.includes("thinner")) {
+        return "Provavelmente serve como solvente, diluição de substâncias ou limpeza técnica/industrial.";
+      }
+
+      if (t.includes("limpeza") || t.includes("cleaner") || t.includes("desengrax") || t.includes("remoção de resíduos")) {
+        return "Provavelmente serve para limpeza, desengraxe ou remoção de sujeiras e resíduos.";
+      }
+
+      if (t.includes("pigment") || t.includes("color") || t.includes("masterbatch") || t.includes("corante")) {
+        return "Provavelmente serve para pigmentação, coloração ou ajuste visual de materiais.";
+      }
+
+      if (t.includes("lubrificante") || t.includes("lubricant") || t.includes("graxa") || t.includes("óleo")) {
+        return "Provavelmente serve para lubrificação, redução de atrito e proteção mecânica.";
+      }
+
+      if (t.includes("resina") || t.includes("polymer") || t.includes("polímero")) {
+        return "Provavelmente serve como matéria-prima para formulações, plásticos, revestimentos ou sistemas poliméricos.";
+      }
+
+      if (t.includes("desinfet") || t.includes("sanitiz") || t.includes("biocida")) {
+        return "Provavelmente serve para desinfecção, sanitização ou controle microbiológico.";
+      }
+
+      if (t.includes("adesivo") || t.includes("cola") || t.includes("binder")) {
+        return "Provavelmente serve para adesão, ligação entre materiais ou formulações de colagem.";
+      }
+
+      return "A finalidade exata não ficou totalmente clara, mas o sistema indica que é um produto técnico/industrial e precisa de análise mais detalhada do documento.";
+    }
+
+    function detectarCategoria(texto) {
+      const t = texto.toLowerCase();
+
+      if (t.includes("solvente")) return "Solvente";
+      if (t.includes("álcool") || t.includes("alcohol") || t.includes("isopropanol")) return "Álcool / Solvente";
+      if (t.includes("resina")) return "Resina";
+      if (t.includes("pigment") || t.includes("masterbatch")) return "Pigmento / Masterbatch";
+      if (t.includes("lubrificante") || t.includes("óleo") || t.includes("graxa")) return "Lubrificante";
+      if (t.includes("detergente") || t.includes("cleaner") || t.includes("limpeza")) return "Produto de limpeza";
+      if (t.includes("ácido") || t.includes("acid")) return "Ácido";
+      if (t.includes("base") || t.includes("alcalino") || t.includes("hidróxido")) return "Base / Alcalino";
+
+      return "Não identificado";
+    }
+
+    function analisarSDS() {
+      const textoOriginal = document.getElementById("textoSDS").value.trim();
+      const resultado = document.getElementById("resultadoSDS");
+
+      if (!textoOriginal) {
+        resultado.innerText = "Cole o texto do SDS ou da ficha técnica para analisar.";
+        return;
+      }
+
+      const nomeProduto = extrairCampo(textoOriginal, [
+        /nome do produto\s*:\s*(.+)/i,
+        /product name\s*:\s*(.+)/i,
+        /nome comercial\s*:\s*(.+)/i
+      ]);
+
+      const composicao = extrairCampo(textoOriginal, [
+        /composição\s*:\s*(.+)/i,
+        /composition\s*:\s*(.+)/i,
+        /ingredientes\s*:\s*(.+)/i
+      ]);
+
+      let casFinal = "Não identificado";
+      const casRegex = textoOriginal.match(/\b\d{2,7}-\d{2}-\d\b/g);
+      if (casRegex && casRegex.length > 0) {
+        casFinal = casRegex.join(", ");
+      }
+
+      const categoria = detectarCategoria(textoOriginal);
+      const finalidade = detectarFinalidade(textoOriginal);
+
+      let resumo = "";
+      resumo += "ANÁLISE DO SDS / FICHA TÉCNICA\n\n";
+      resumo += "Nome do produto: " + nomeProduto + "\n";
+      resumo += "CAS: " + casFinal + "\n";
+      resumo += "Composição: " + composicao + "\n";
+      resumo += "Categoria estimada: " + categoria + "\n\n";
+      resumo += "Para que serve:\n" + finalidade + "\n\n";
+
+      if (textoOriginal.toLowerCase().includes("inflamável") || textoOriginal.toLowerCase().includes("flammable")) {
+        resumo += "Alerta importante: o texto indica que o produto pode ser inflamável.\n";
+      }
+
+      if (textoOriginal.toLowerCase().includes("corrosivo") || textoOriginal.toLowerCase().includes("corrosive")) {
+        resumo += "Alerta importante: o texto indica característica corrosiva.\n";
+      }
+
+      if (textoOriginal.toLowerCase().includes("toxic") || textoOriginal.toLowerCase().includes("tóxico")) {
+        resumo += "Alerta importante: o texto sugere toxicidade e exige cuidado no manuseio.\n";
+      }
+
+      resultado.innerText = resumo;
+    }
+
+    /* DIESEL */
+    const dieselData = [
+      {
+        ano: "2022",
+        preco: "R$ 6,89",
+        variacao: "+18%",
+        contexto: "Alta pressão internacional e aumento forte de custos.",
+        impacto: "Frete, logística e operação mais pressionados."
+      },
+      {
+        ano: "2023",
+        preco: "R$ 5,94",
+        variacao: "-13,8%",
+        contexto: "Ajuste após o pico, com mercado menos estressado.",
+        impacto: "Melhora relativa para setores dependentes de transporte."
+      },
+      {
+        ano: "2024",
+        preco: "R$ 5,76",
+        variacao: "-3%",
+        contexto: "Mercado mais estável, mas ainda sujeito a petróleo e câmbio.",
+        impacto: "Maior previsibilidade operacional."
+      },
+      {
+        ano: "2025",
+        preco: "R$ 5,98",
+        variacao: "+3,8%",
+        contexto: "Oscilação moderada com pressão logística e energética.",
+        impacto: "Necessidade de controle de custo e planejamento."
+      }
+    ];
+
+    function carregarDiesel() {
+      const tbody = document.getElementById("dieselTableBody");
+      tbody.innerHTML = "";
+
+      dieselData.forEach(item => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${item.ano}</td>
+          <td>${item.preco}</td>
+          <td>${item.variacao}</td>
+          <td>${item.contexto}</td>
+          <td>${item.impacto}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    /* GERADOR DE E-MAIL */
+    function gerarEmail(plano) {
+      const objetivo = document.getElementById(plano === "basic" ? "emailObjetivoBasic" : "emailObjetivoPlus").value.trim();
+      const tom = document.getElementById(plano === "basic" ? "emailTomBasic" : "emailTomPlus").value;
+      const info = document.getElementById(plano === "basic" ? "emailInfoBasic" : "emailInfoPlus").value.trim();
+      const resultado = document.getElementById(plano === "basic" ? "resultadoEmailBasic" : "resultadoEmailPlus");
+
+      if (!objetivo) {
+        resultado.innerText = "Preencha pelo menos o objetivo do e-mail.";
+        return;
+      }
+
+      let abertura = "Olá, tudo bem?";
+      let fechamento = "Fico à disposição. Atenciosamente,";
+
+      if (tom === "formal") {
+        abertura = "Prezado(a), espero que esteja bem.";
+        fechamento = "Permaneço à disposição para quaisquer esclarecimentos. Atenciosamente,";
+      } else if (tom === "amigavel") {
+        abertura = "Olá! Espero que você esteja bem.";
+        fechamento = "Qualquer coisa, sigo à disposição. Um abraço,";
+      } else if (tom === "direto") {
+        abertura = "Olá.";
+        fechamento = "Aguardo seu retorno.";
+      }
+
+      let email = "";
+      email += abertura + "\n\n";
+      email += "Estou entrando em contato com o objetivo de " + objetivo + ".\n\n";
+
+      if (info) {
+        email += "Contexto:\n" + info + "\n\n";
+      }
+
+      email += "Caso faça sentido, podemos avançar com os próximos passos ou alinhar os detalhes necessários.\n\n";
+      email += fechamento + "\n";
+      email += "Lorenzo";
+
+      resultado.innerText = email;
+    }
+
+    function limparEmail(plano) {
+      if (plano === "basic") {
+        document.getElementById("emailObjetivoBasic").value = "";
+        document.getElementById("emailTomBasic").value = "profissional";
+        document.getElementById("emailInfoBasic").value = "";
+        document.getElementById("resultadoEmailBasic").innerText = "O e-mail gerado vai aparecer aqui.";
+      } else {
+        document.getElementById("emailObjetivoPlus").value = "";
+        document.getElementById("emailTomPlus").value = "profissional";
+        document.getElementById("emailInfoPlus").value = "";
+        document.getElementById("resultadoEmailPlus").innerText = "O e-mail premium vai aparecer aqui.";
+      }
+    }
+
+    /* MEMÓRIA */
+    function salvarMemoria() {
+      const texto = document.getElementById("memoriaInput").value.trim();
+      const resultado = document.getElementById("resultadoMemoria");
+
+      if (!texto) {
+        resultado.innerText = "Digite algo para salvar na memória visual.";
+        return;
+      }
+
+      const atual = resultado.innerText === "Nenhuma memória adicional salva ainda." ? "" : resultado.innerText + "\n\n";
+      resultado.innerText = atual + "• " + texto;
+      document.getElementById("memoriaInput").value = "";
+    }
+
+    function limparMemoria() {
+      document.getElementById("memoriaInput").value = "";
+      document.getElementById("resultadoMemoria").innerText = "Nenhuma memória adicional salva ainda.";
+    }
+
+    /* AUTOMAÇÃO */
+    function gerarAutomacao() {
+      const texto = document.getElementById("automacaoInput").value.trim();
+      const resultado = document.getElementById("resultadoAutomacao");
+
+      if (!texto) {
+        resultado.innerText = "Descreva a automação desejada.";
+        return;
+      }
+
+      let resposta = "";
+      resposta += "ESTRUTURA DE AUTOMAÇÃO\n\n";
+      resposta += "Objetivo:\n" + texto + "\n\n";
+      resposta += "Fluxo sugerido:\n";
+      resposta += "1. Receber a entrada do usuário ou arquivo.\n";
+      resposta += "2. Identificar os campos principais.\n";
+      resposta += "3. Organizar os dados em tabela.\n";
+      resposta += "4. Gerar resumo automático.\n";
+      resposta += "5. Exportar ou enviar o resultado.\n\n";
+      resposta += "Próximo passo:\nLigar esse fluxo a backend, planilha ou API.";
+
+      resultado.innerText = resposta;
+    }
+
+    function limparAutomacao() {
+      document.getElementById("automacaoInput").value = "";
+      document.getElementById("resultadoAutomacao").innerText = "A estrutura da automação vai aparecer aqui.";
+    }
+
+    /* RELATÓRIO */
+    function gerarRelatorio() {
+      const tema = document.getElementById("relatorioTema").value.trim();
+      const tipo = document.getElementById("relatorioTipo").value;
+      const info = document.getElementById("relatorioInfo").value.trim();
+      const resultado = document.getElementById("resultadoRelatorio");
+
+      if (!tema) {
+        resultado.innerText = "Informe o tema do relatório.";
+        return;
+      }
+
+      let tituloTipo = "Relatório Executivo";
+      if (tipo === "operacional") tituloTipo = "Relatório Operacional";
+      if (tipo === "comercial") tituloTipo = "Relatório Comercial";
+
+      let texto = "";
+      texto += tituloTipo + "\n\n";
+      texto += "Tema: " + tema + "\n\n";
+      texto += "Resumo:\n";
+      texto += "Este relatório apresenta uma visão estruturada sobre " + tema + ". ";
+
+      if (tipo === "executivo") {
+        texto += "O foco está em destacar os principais pontos, riscos, oportunidades e próximos passos de forma objetiva.\n\n";
+      } else if (tipo === "operacional") {
+        texto += "O foco está em detalhar operação, processo, gargalos e possíveis melhorias.\n\n";
+      } else {
+        texto += "O foco está em oportunidades, relacionamento comercial, mercado e movimentações estratégicas.\n\n";
+      }
+
+      if (info) {
+        texto += "Informações-base:\n" + info + "\n\n";
+      }
+
+      texto += "Conclusão:\n";
+      texto += "Recomenda-se acompanhar os indicadores principais e manter revisão periódica do tema para tomada de decisão.";
+
+      resultado.innerText = texto;
+    }
+
+    function limparRelatorio() {
+      document.getElementById("relatorioTema").value = "";
+      document.getElementById("relatorioTipo").value = "executivo";
+      document.getElementById("relatorioInfo").value = "";
+      document.getElementById("resultadoRelatorio").innerText = "O relatório gerado vai aparecer aqui.";
+    }
+
+    /* TRADE DASHBOARD */
+    const tradeData = [
+      { continente: "América do Norte", pais: "México", operacao: "Importação", produto: "Polímero de engenharia", empresa: "Quimex Solutions", valor: 320000, kg: 25000, periodo: "2026" },
+      { continente: "América do Norte", pais: "México", operacao: "Exportação", produto: "Resina plástica", empresa: "Nova Resin MX", valor: 210000, kg: 18000, periodo: "2026" },
+      { continente: "América do Norte", pais: "Estados Unidos", operacao: "Importação", produto: "Isopropyl Alcohol", empresa: "CleanChem USA", valor: 540000, kg: 42000, periodo: "2026" },
+      { continente: "América do Sul", pais: "Brasil", operacao: "Importação", produto: "Masterbatch preto", empresa: "Color Tech BR", valor: 185000, kg: 11000, periodo: "2026" },
+      { continente: "América do Sul", pais: "Brasil", operacao: "Exportação", produto: "Aditivo industrial", empresa: "Indústria Global BR", valor: 760000, kg: 51000, periodo: "2025" },
+      { continente: "Europa", pais: "Alemanha", operacao: "Exportação", produto: "Resina epóxi", empresa: "EuroChem DE", valor: 880000, kg: 64000, periodo: "2026" },
+      { continente: "Europa", pais: "Itália", operacao: "Importação", produto: "Pigmento azul", empresa: "ItalColor SPA", valor: 150000, kg: 9000, periodo: "2025" },
+      { continente: "Ásia", pais: "China", operacao: "Exportação", produto: "Solvente técnico", empresa: "Asia Solv Ltd", valor: 1200000, kg: 100000, periodo: "2026" },
+      { continente: "Ásia", pais: "Índia", operacao: "Exportação", produto: "Álcool industrial", empresa: "Chem India", valor: 450000, kg: 36000, periodo: "2024" },
+      { continente: "África", pais: "África do Sul", operacao: "Importação", produto: "Lubrificante industrial", empresa: "SA Lube Corp", valor: 96000, kg: 7000, periodo: "2026" },
+      { continente: "Oceania", pais: "Austrália", operacao: "Importação", produto: "Resina acrílica", empresa: "Oceanic Materials", valor: 275000, kg: 17000, periodo: "2026" },
+      { continente: "América do Norte", pais: "Canadá", operacao: "Exportação", produto: "Aditivo para polímero", empresa: "NorthChem CA", valor: 310000, kg: 22000, periodo: "2025" }
+    ];
+
+    function selecionarContinente(nome, botao) {
+      continenteAtual = nome;
+      document.querySelectorAll(".continent-btn").forEach(btn => btn.classList.remove("active"));
+      botao.classList.add("active");
+      preencherPaises();
+      carregarDados();
+    }
+
+    function preencherPaises() {
+      const selectPais = document.getElementById("filtroPais");
+      const paises = tradeData
+        .filter(item => continenteAtual === "Global" ? true : item.continente === continenteAtual)
+        .map(item => item.pais);
+
+      const unicos = ["Todos", ...new Set(paises)];
+      selectPais.innerHTML = "";
+
+      unicos.forEach(pais => {
+        const option = document.createElement("option");
+        option.value = pais;
+        option.textContent = pais;
+        selectPais.appendChild(option);
+      });
+    }
+
+    function formatarNumero(valor) {
+      return valor.toLocaleString("pt-BR");
+    }
+
+    function carregarDados() {
+      const operacao = document.getElementById("filtroOperacao").value;
+      const pais = document.getElementById("filtroPais").value;
+      const periodo = document.getElementById("filtroPeriodo").value;
+      const busca = document.getElementById("filtroBusca").value.toLowerCase().trim();
+
+      let dados = tradeData.filter(item => {
+        const okContinente = continenteAtual === "Global" ? true : item.continente === continenteAtual;
+        const okOperacao = operacao === "Todos" ? true : item.operacao === operacao;
+        const okPais = pais === "Todos" ? true : item.pais === pais;
+        const okPeriodo = periodo ? item.periodo === periodo : true;
+        const okBusca = busca === ""
+          ? true
+          : (
+              item.produto.toLowerCase().includes(busca) ||
+              item.empresa.toLowerCase().includes(busca) ||
+              item.pais.toLowerCase().includes(busca)
+            );
+
+        return okContinente && okOperacao && okPais && okPeriodo && okBusca;
+      });
+
+      document.getElementById("tradeTitle").innerText =
+        continenteAtual === "Global" ? "Global Trade Dashboard" : continenteAtual;
+
+      document.getElementById("tradeSubtitle").innerText =
+        `${dados.length} resultados encontrados`;
+
+      const tbody = document.getElementById("tradeTableBody");
+      tbody.innerHTML = "";
+
+      if (dados.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="8" style="text-align:center; color:#94a3b8; padding:24px;">
+              Nenhum registro encontrado para os filtros escolhidos.
+            </td>
+          </tr>
+        `;
+      } else {
+        dados.forEach(item => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td>${item.continente}</td>
+            <td>${item.pais}</td>
+            <td>${item.operacao}</td>
+            <td>${item.produto}</td>
+            <td>${item.empresa}</td>
+            <td>US$ ${formatarNumero(item.valor)}</td>
+            <td>${formatarNumero(item.kg)} kg</td>
+            <td>${item.periodo}</td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+
+      const totalValor = dados.reduce((acc, item) => acc + item.valor, 0);
+      const totalPeso = dados.reduce((acc, item) => acc + item.kg, 0);
+      const paisesVisiveis = new Set(dados.map(item => item.pais)).size;
+
+      document.getElementById("cardRegistros").innerText = formatarNumero(dados.length);
+      document.getElementById("cardValor").innerText = "US$ " + formatarNumero(totalValor);
+      document.getElementById("cardPeso").innerText = formatarNumero(totalPeso) + " kg";
+      document.getElementById("cardPaises").innerText = formatarNumero(paisesVisiveis);
+    }
+
+    /* INIT */
+    carregarDiesel();
+  </script>
+</body>
+</html>
